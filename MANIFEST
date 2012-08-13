@@ -13,7 +13,6 @@ t/105-filter_JSON_SL.t
 t/106-filter_Mojo_JSON.t
 t/107-filter_Pegex_JSON.t
 t/base.include
-t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
