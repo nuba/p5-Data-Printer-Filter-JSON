@@ -2,46 +2,13 @@ package Data::Printer::Filter::JSON;
 
 use 5.006;
 use strict;
-use warnings;
+use warnings 'all';
+use Carp;
 
 use Data::Printer::Filter;
 use Term::ANSIColor;
 
-
 our $VERSION = '0.01';
-
-# JSON::NotString is from JSON 1.x
-# boolean is used by Pegex::JSON
-
-for ( qw/ JSON::XS::Boolean JSON::PP::Boolean JSON::DWIW::Boolean
-    JSON::SL::Boolean Mojo::JSON::_Bool JSON::NotString boolean
-  /) {
-  filter "$_" => sub {
-      my ($obj, $p) = @_;
-
-      my $str;
-      if($obj->isa( 'JSON::NotString') ) {
-        $str = $obj->{value};
-      } else {
-        $str = $$obj == 1 ? 'true' : 'false';
-      }
-
-      my %defaults = (
-        true => 'bright_green on_black',
-        false => 'bright_red on_black'
-      );
-
-      my $color = $p->{JSON}{$str};
-      $color = $defaults{$str} unless defined $color;
-      return colored($str, $color);
-  }, {
-    show_repeated => 1, # handles object reuse
-  };
-}
-
-1;
-
-__DATA__
 
 =head1 NAME
 
@@ -145,5 +112,45 @@ This is free software; you can redistribute it and/or modify it under the same
 terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+# JSON::NotString is from JSON 1.x
+# boolean is used by Pegex::JSON
+
+for (
+    qw/
+    JSON::DWIW::Boolean
+    JSON::NotString
+    JSON::PP::Boolean
+    JSON::SL::Boolean
+    JSON::XS::Boolean
+    Mojo::JSON::_Bool
+    boolean
+    /
+  )
+{
+    filter "$_" => sub {
+        my ( $obj, $p ) = @_;
+        my $str;
+        if ( $obj->isa('JSON::NotString') ) {
+            $str = $obj->{value};
+        }
+        else {
+            $str = $$obj == 1 ? 'true' : 'false';
+        }
+
+        my %defaults = (
+            true  => 'bright_green on_black',
+            false => 'bright_red on_black'
+        );
+
+        my $color = $p->{JSON}{$str};
+        $color = $defaults{$str} unless defined $color;
+        return colored( $str, $color );
+      },
+      {
+        show_repeated => 1,    # handles object reuse
+      };
+}
 
 1;
