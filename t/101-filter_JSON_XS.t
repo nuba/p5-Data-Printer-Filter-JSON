@@ -13,17 +13,11 @@ SKIP: {
 }
 
 my $emulated = {
-    alpha => \do { my $v = 1 },
-    beta  => \do { my $v = 0 },
-    gamma => 'V: $emulated->{alpha}',
-    zeta  => 'V: $emulated->{beta}'
+    alpha => bless( \do { my $v = 1 }, 'JSON::XS::Boolean' ),
+    beta  => bless( \do { my $v = 0 }, 'JSON::XS::Boolean' ),
 };
 $emulated->{gamma} = $emulated->{alpha};
 $emulated->{zeta}  = $emulated->{beta};
-bless( $emulated->{alpha}, 'JSON::XS::Boolean' );
-bless( $emulated->{beta},  'JSON::XS::Boolean' );
-bless( $emulated->{gamma}, 'JSON::XS::Boolean' );
-bless( $emulated->{zeta},  'JSON::XS::Boolean' );
 
 is( p($emulated), expected, "JSON::XS, emulated" );
 

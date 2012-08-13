@@ -19,10 +19,6 @@ my $emulated = {
           'beta' => bless( do{\(my $o = 0)}, 'JSON::SL::Boolean' )
 
 };
-bless( $emulated->{alpha}, 'JSON::SL::Boolean' );
-bless( $emulated->{beta},  'JSON::SL::Boolean' );
-bless( $emulated->{gamma}, 'JSON::SL::Boolean' );
-bless( $emulated->{zeta},  'JSON::SL::Boolean' );
 
 is( p($emulated), expected, "JSON::SL, emulated" );
 
