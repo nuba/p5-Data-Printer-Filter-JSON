@@ -85,7 +85,7 @@ L<Pegex::JSON>).
 
 =head2 Can't Handle
 
-The ouput of any JSON decoded that doesn NOT use a blessed reference for its
+The ouput of any JSON decoder that does NOT use a blessed reference for its
 booleans, like L<JSON::Syck> or L<JSON::Streaming::Reader>.
 
 =head1 AUTHOR
