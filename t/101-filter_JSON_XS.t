@@ -4,11 +4,12 @@ use Test::More;
 BEGIN { require 't/base.include' }
 
 SKIP: {
-
-    eval { require JSON::XS };
-    skip 'Needs JSON::XS', 1 if $@;
-    use JSON::XS qw/decode_json/;
-    my $dump = p decode_json input;
+    eval {
+        require JSON::XS;
+        JSON::XS->import(qw/decode_json/);
+    };
+    skip "JSON::XS not installed", 1 if $@;
+    my $dump = p( decode_json(input) );
     is( $dump, expected, "JSON:XS, live" );
 }
 

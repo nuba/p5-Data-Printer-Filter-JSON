@@ -8,7 +8,7 @@ use Carp;
 use Data::Printer::Filter;
 use Term::ANSIColor;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -16,7 +16,7 @@ Data::Printer::Filter::JSON - pretty-print your decoded JSON structures!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 

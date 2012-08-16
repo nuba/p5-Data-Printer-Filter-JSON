@@ -4,10 +4,12 @@ use Test::More;
 BEGIN { require 't/base.include' }
 
 SKIP: {
-
-    eval { require JSON::PP };
+    eval {
+        require JSON::PP;
+        JSON::PP->import;
+    };
     skip 'Needs JSON::PP', 1 if $@;
-    use JSON::PP;
+
     my $dump = p( JSON::PP->new->decode(input) );
     is( $dump, expected, "JSON::PP, live" );
 }

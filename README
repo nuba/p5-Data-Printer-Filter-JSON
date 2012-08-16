@@ -2,7 +2,7 @@ NAME
     Data::Printer::Filter::JSON - pretty-print your decoded JSON structures!
 
 VERSION
-    Version 0.01
+    Version 0.02
 
 SYNOPSIS
     # In your program:
