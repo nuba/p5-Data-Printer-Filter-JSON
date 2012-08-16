@@ -4,7 +4,7 @@ Data::Printer::Filter::JSON - pretty-print your decoded JSON structures!
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
@@ -81,16 +81,25 @@ This module fixes that! :)
 
 L<JSON::XS> and L<JSON::PP> (L<JSON> 2.x), L<JSON::NotString> (L<JSON> 1.x),
 L<JSON::DWIW>, L<JSON::Parser>, L<JSON::SL>, L<Mojo::JSON>, L<boolean> (used by
-L<Pegex::JSON>).
+L<Pegex::JSON>) and L<JSON::JOM>.
+
+=head3 JSON::JOM Caveat
+
+When working with L<JSON::JOM>, make sure you load it B<after> loading L<Data::Printer>.
+This is L<a known bug and B<garu>'s working on it!|https://github.com/garu/Data-Printer/issues/33>.
 
 =head2 Can't Handle
 
-The ouput of any JSON decoder that does NOT use a blessed reference for its
+The output of any JSON decoder that does NOT use a blessed reference for its
 booleans, like L<JSON::Syck> or L<JSON::Streaming::Reader>.
 
 =head1 AUTHOR
 
 Nuba Princigalli <nuba@stastu.com>
+
+=head1 CONTRIBUTORS
+
+Tim Heaney <oylensheegul@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -2,7 +2,7 @@ NAME
     Data::Printer::Filter::JSON - pretty-print your decoded JSON structures!
 
 VERSION
-    Version 0.02
+    Version 0.03
 
 SYNOPSIS
     # In your program:
@@ -77,14 +77,21 @@ DESCRIPTION
   Handles
     JSON::XS and JSON::PP (JSON 2.x), JSON::NotString (JSON 1.x),
     JSON::DWIW, JSON::Parser, JSON::SL, Mojo::JSON, boolean (used by
-    Pegex::JSON).
+    Pegex::JSON) and JSON::JOM.
+
+    JSON::JOM Caveat
+    When working with JSON::JOM, make sure you load it after loading
+    Data::Printer. This is a known bug and garu's working on it!.
 
   Can't Handle
-    The ouput of any JSON decoded that doesn NOT use a blessed reference for
+    The output of any JSON decoder that does NOT use a blessed reference for
     its booleans, like JSON::Syck or JSON::Streaming::Reader.
 
 AUTHOR
     Nuba Princigalli <nuba@stastu.com>
+
+CONTRIBUTORS
+    Tim Heaney <oylensheegul@gmail.com>
 
 COPYRIGHT AND LICENSE
     Copyright (c) 2012, Nuba Princigalli <nuba@stastu.com>. All rights
